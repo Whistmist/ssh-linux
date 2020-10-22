@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统设置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <style>
+        .layui-form-item .layui-input-company {width: auto;padding-right: 10px;line-height: 38px;}
+
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-form layuimini-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label required">服务器IP</label>
+                <div class="layui-input-block">
+                    <input type="text" name="hostname" lay-verify="required" lay-reqtext="服务器IP不能为空"
+                           placeholder="请输入服务器IP" value="39.105.125.176" class="layui-input">
+                    <tip>填写自己将要访问的服务器IP。</tip>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">端口</label>
+                <div class="layui-input-block">
+                    <input type="text" name="port" lay-verify="required" lay-reqtext="端口不能为空" placeholder="请输入端口"
+                           value="22" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">账号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" lay-verify="required" lay-reqtext="账号不能为空" placeholder="请输入账号"
+                           value="root" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="password" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码"
+                            class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label required">版权信息</label>
+                <div class="layui-input-block">
+                    © 2020 layuimini.99php.cn MIT license
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="setting">确认保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    //获取basePath，测试的话就能用就完了
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+    layui.use(['form'], function () {
+        var form = layui.form
+            , layer = layui.layer;
+
+        //监听提交
+        form.on('submit(setting)', function (data) {
+            $.ajax({
+                url: BASE_PATH + "/addSetting",
+                type: "post",
+                data: JSON.stringify(data.field),
+                success: function f(data) {
+                    $('ul').empty();
+                    console.log(data);
+                    for(var i = 0; i<data.length; i++){
+                        var industry = data[i];
+                        console.log('industry');
+                        console.log(industry);
+                       $('ul').append("<li>row "+i+":  "+industry+"</li>");
+                    }
+                }
+            })
+
+
+            return false;
+
+
+        });
+
+    });
+
+</script>
+</body>
+</html>
