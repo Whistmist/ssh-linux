@@ -1,4 +1,4 @@
-package com.mist.infra.utils.redis.convert;
+package com.mist.infra.utils.redis;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

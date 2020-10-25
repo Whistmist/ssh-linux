@@ -1,4 +1,4 @@
-package com.mist.infra.utils;
+package com.mist.infra.utils.redis;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -6,8 +6,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.mist.infra.utils.redis.convert.DateDeserializer;
-import com.mist.infra.utils.redis.convert.DateSerializer;
 
 import java.io.IOException;
 import java.util.ArrayList;

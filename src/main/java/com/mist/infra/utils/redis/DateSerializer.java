@@ -1,4 +1,4 @@
-package com.mist.infra.utils.redis.convert;
+package com.mist.infra.utils.redis;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

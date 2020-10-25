@@ -2,21 +2,17 @@ package com.mist;
 
 
 import com.mist.domain.entity.LinnuxServer;
-import com.mist.infra.utils.RedisHelper;
-
-
+import com.mist.infra.utils.redis.RedisHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SshLinuxApplicationTests.class)
+@SpringBootTest(classes = SshLinuxApplication.class)
 public class SshLinuxApplicationTests {
     @Autowired
     private RedisHelper redisHelper;
@@ -35,6 +31,7 @@ public class SshLinuxApplicationTests {
         String prefix = "mist:test";
         redisHelper.hshPut(prefix,"12","hahahha");
         String s = redisHelper.hshGet(prefix, "12");
+        redisHelper.hshDelete(prefix,"12");
         System.out.println(s);
     }
 
